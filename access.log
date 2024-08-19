@@ -56,3 +56,5 @@
 ::ffff:127.0.0.1 - - [12/Aug/2024:11:08:27 +0000] "POST /api/events HTTP/1.1" 200 41 "-" "Thunder Client (https://www.thunderclient.com)"
 ::ffff:127.0.0.1 - - [12/Aug/2024:11:10:26 +0000] "POST /api/events HTTP/1.1" 200 41 "-" "Thunder Client (https://www.thunderclient.com)"
 ::1 - - [18/Aug/2024:18:32:35 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [19/Aug/2024:11:51:09 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [19/Aug/2024:11:54:30 +0000] "GET /swagger-ui.html HTTP/1.1" 404 154 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
