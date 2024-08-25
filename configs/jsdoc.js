@@ -1,28 +1,28 @@
-// const swaggerJsdoc = require('swagger-jsdoc');
+// backend/swagger.js
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
-// const options = {
-//     definition: {
-//       openapi: '3.0.0',
-//       info: {
-//         title: 'Community_APP',
-//         version: '1.0.0',
-//       },
-//     },
-//     apis: [{url: 'https://community-backend-954x.onrender.com'}], // files containing annotations as above
-//   };
-
-const swaggerJsdoc = require("swagger-jsdoc");
-
-const options = {
-  failOnErrors: true, // Whether or not to throw when parsing errors. Defaults to false.
-  definition: {
-    openapi: "3.0.0",
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
     info: {
-      title: "Community_APP",
-      version: "1.0.0",
+      title: 'Community Center API',
+      version: '1.0.0',
+      description: 'API documentation for Community Center application',
     },
+    servers: [
+      {
+        url: 'http://localhost:8080',
+        description: 'Local server',
+      },
+    ],
   },
-  apis: [{ url: "https://community-backend-954x.onrender.com" }],
+  apis: ['./routes/*.js'], // Define the path where your routes are defined
 };
 
-const openapiSpecification = swaggerJsdoc(options);
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+module.exports = {
+  swaggerUi,
+  swaggerDocs,
+};

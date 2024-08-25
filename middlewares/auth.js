@@ -1,22 +1,37 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const blackListModel = require("../models/blackListModel");
 
-const auth = (req, res, next) => {
-  console.log("auth code");
-  const header = req._headers;
-  console.log(header)
+require("dotenv").config();
+const auth = async (req, res, next) => {
+  const header = req.headers.authorization;
   if (!header) {
     return res.json({ message: "token header is not present" });
   }
 
   const token = header.split(" ")[1];
-  let decode = jwt.verify(token, process.env.SECRET_KEY);
 
-  if (!decode) {
-    return res.json({ message: "this is not a valid token" });
-  } else {
-    next();
+  // you are the one who giveing the expires
+  //
+  const blacklistCheck = await blackListModel.findOne({ token: token });
+  if (blacklistCheck) {
+    return res.json({
+      message: "this token is blacklisted try to get the new token",
+    });
   }
+  let decode = jwt.verify(token, process.env.SECRET_KEY, (err, result) => {
+    if (err) {
+      return res.status(400).json({ message: err });
+    } else {
+      console.log(result);
+      req.user = { email: result.email };
+      next();
+    }
+  });
+  // if (!decode) {
+  //   return res.json({ message: "this is not a valid token" });
+  // } else {
+  //   next();
+  // }
 };
 
 module.exports = auth;

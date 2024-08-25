@@ -9,6 +9,7 @@ const eventRouter = require("./Routes/eventRoutes");
 const auth = require("./middlewares/auth");
 const userRouter = require("./Routes/userRoutes");
 const cors = require("cors");
+const { swaggerUi, swaggerDocs } = require("./configs/jsdoc");
 require("dotenv").config();
 
 const Port = process.env.PORT;
@@ -42,6 +43,8 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use("/api", auth, eventRouter);
 app.use("/users", userRouter);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // console.log(Port)
 app.listen(Port, async () => {
