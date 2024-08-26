@@ -6,7 +6,7 @@ const userModel = require("../models/userModel");
 const registerModel = require("../models/registerModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const blackListModel = require("../models/blackListModel");
+const blackListModel = require("../models/blacklistModel");
 const userRouter = express.Router();
 
 const storage = multer.diskStorage({
